@@ -14,12 +14,14 @@ public class UserController {
 
     @Autowired
     public UserController(UserServiceImp userService) {
+
         this.userService = userService;
     }
 
     // Endpoint om een user op te slaan
     @PostMapping
     public User createUser(@RequestBody User user) {
+
         return userService.saveUser(user);
     }
 

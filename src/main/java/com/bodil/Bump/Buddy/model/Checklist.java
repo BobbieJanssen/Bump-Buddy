@@ -11,7 +11,7 @@ public class Checklist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     private String title;
     private boolean isTemplate;

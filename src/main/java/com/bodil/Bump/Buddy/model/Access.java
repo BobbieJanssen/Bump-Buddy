@@ -8,7 +8,7 @@ public class Access {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     private boolean status;
 

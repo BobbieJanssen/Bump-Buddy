@@ -2,20 +2,53 @@ package com.bodil.Bump.Buddy.service.implementaties;
 
 import com.bodil.Bump.Buddy.model.User;
 import com.bodil.Bump.Buddy.repository.interfaces.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bodil.Bump.Buddy.service.interfaces.UserService;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserServiceImp {
+public class UserServiceImp implements UserService {
 
-    @Autowired
-    private UserRepository userRepository;
 
-    public User saveUser (User user) {
+    private final UserRepository userRepository;
+
+
+    public UserServiceImp(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Override
+    public List<User> getAllUsers(){
+
+        return userRepository.findAll();
+    }
+
+    @Override
+    public Optional<User> getUserById(long id) {
+
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public User createUser(User user) {
+
         return userRepository.save(user);
     }
 
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
+    //check of dit klopt
+    @Override
+    public User updateUser(long id, User user) {
+        if (userRepository.existsById(id)) {
+            return userRepository.save(user);
+        }
+        throw new RuntimeException("User not found");
     }
+
+    @Override
+    public void deleteUser(long id) {
+
+        userRepository.deleteById(id);
+    }
+
 }
