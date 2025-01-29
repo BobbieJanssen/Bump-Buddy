@@ -2,7 +2,7 @@
 package com.bodil.Bump.Buddy.controller;
 
 import com.bodil.Bump.Buddy.model.User;
-import com.bodil.Bump.Buddy.service.UserService;
+import com.bodil.Bump.Buddy.service.implementaties.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImp userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserServiceImp userService) {
         this.userService = userService;
     }
 

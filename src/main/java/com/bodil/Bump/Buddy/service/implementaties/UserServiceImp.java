@@ -1,12 +1,12 @@
-package com.bodil.Bump.Buddy.service;
+package com.bodil.Bump.Buddy.service.implementaties;
 
 import com.bodil.Bump.Buddy.model.User;
-import com.bodil.Bump.Buddy.repository.UserRepository;
+import com.bodil.Bump.Buddy.repository.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserServiceImp {
 
     @Autowired
     private UserRepository userRepository;
