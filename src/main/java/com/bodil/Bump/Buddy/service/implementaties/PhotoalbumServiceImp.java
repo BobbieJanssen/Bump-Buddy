@@ -3,6 +3,7 @@ package com.bodil.Bump.Buddy.service.implementaties;
 import com.bodil.Bump.Buddy.model.Photoalbum;
 import com.bodil.Bump.Buddy.repository.interfaces.PhotoalbumRepository;
 import com.bodil.Bump.Buddy.service.interfaces.PhotoalbumService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +30,14 @@ public class PhotoalbumServiceImp implements PhotoalbumService {
     @Override
     public List<Photoalbum> findAllByUserId(long userId) {
         return photoalbumRepository.findAllByUserId(userId);
+    }
+
+    @Override
+    public Photoalbum updatePhotoalbumNote(long albumId, String note) {
+        Photoalbum album = photoalbumRepository.findById(albumId)
+                .orElseThrow(() -> new EntityNotFoundException("Album not found"));
+        album.setNote(note);
+        return photoalbumRepository.save(album);
     }
 
     @Override
