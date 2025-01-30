@@ -10,9 +10,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImp implements UserService {
 
-
     private final UserRepository userRepository;
-
 
     public UserServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -20,19 +18,16 @@ public class UserServiceImp implements UserService {
 
     @Override
     public List<User> getAllUsers(){
-
         return userRepository.findAll();
     }
 
     @Override
     public Optional<User> getUserById(long id) {
-
         return userRepository.findById(id);
     }
 
     @Override
     public User createUser(User user) {
-
         return userRepository.save(user);
     }
 
@@ -41,14 +36,20 @@ public class UserServiceImp implements UserService {
     public User updateUser(long id, User user) {
         if (userRepository.existsById(id)) {
             return userRepository.save(user);
+        } else {
+            throw new RuntimeException("User not found");
         }
-        throw new RuntimeException("User not found");
     }
 
     @Override
     public void deleteUser(long id) {
 
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
 }
