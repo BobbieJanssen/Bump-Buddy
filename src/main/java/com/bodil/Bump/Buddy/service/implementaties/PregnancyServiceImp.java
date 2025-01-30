@@ -23,7 +23,7 @@ public class PregnancyServiceImp implements PregnancyService {
     }
 
     @Override
-    public Optional<Pregnancy> getPregnancyById(int id){
+    public Optional<Pregnancy> getPregnancyById(long id){
         return pregnancyRepository.findById(id);
     }
 
@@ -33,7 +33,7 @@ public class PregnancyServiceImp implements PregnancyService {
     }
 
     @Override
-    public Pregnancy updatePregnancy (int id, Pregnancy pregnancy) {
+    public Pregnancy updatePregnancy (long id, Pregnancy pregnancy) {
         if (pregnancyRepository.existsById(id)) {
             return pregnancyRepository.save(pregnancy);
         }
@@ -41,7 +41,7 @@ public class PregnancyServiceImp implements PregnancyService {
     }
 
     @Override
-    public void deletePregnancy(int id) {
+    public void deletePregnancy(long id) {
         pregnancyRepository.deleteById(id);
     }
 }
