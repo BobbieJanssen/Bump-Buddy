@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/articles")
 public class ArticleController {
     private final ArticleService articleService;
 
