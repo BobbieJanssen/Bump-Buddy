@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BumpBuddyApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BumpBuddyApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(BumpBuddyApplication.class, args);
+    }
 }
