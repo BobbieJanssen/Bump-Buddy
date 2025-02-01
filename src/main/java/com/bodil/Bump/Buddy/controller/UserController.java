@@ -1,34 +1,54 @@
-//Misschien pregnancy geen eigen klas maken en toevoegen bij user, zodat er bij de user staat of er sprake is van een zwangerschap
 package com.bodil.Bump.Buddy.controller;
 
 import com.bodil.Bump.Buddy.model.User;
-import com.bodil.Bump.Buddy.service.implementaties.UserServiceImp;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bodil.Bump.Buddy.service.interfaces.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
+    private final UserService userService;
 
-    private final UserServiceImp userService;
-
-    @Autowired
-    public UserController(UserServiceImp userService) {
-
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    // Endpoint om een user op te slaan
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-
-        return userService.saveUser(user);
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
-    // Endpoint om een user op te halen op basis van ID
+    //met optional of zonder?
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id) {
-        return userService.getUserById(id);
+    public ResponseEntity<Optional<User>> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUserById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        return ResponseEntity.ok(userService.createUser(user));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+        return ResponseEntity.ok(userService.updateUser(id, user));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/findByEmail")
+    public ResponseEntity<User> getUserByEmail(@RequestParam String email) {
+        Optional<User> user = userService.findByEmail(email);
+        return user.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
 
