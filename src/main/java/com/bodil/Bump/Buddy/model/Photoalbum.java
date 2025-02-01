@@ -14,7 +14,8 @@ public class Photoalbum {
     private long id;
 
     private String title;
-    private java.time.LocalDate createdAt;
+    private String note;
+    private LocalDate createdAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -57,5 +58,13 @@ public class Photoalbum {
 
     public void setPhotos(List<Photo> photos) {
         this.photos = photos;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getNote() {
+        return note;
     }
 }
