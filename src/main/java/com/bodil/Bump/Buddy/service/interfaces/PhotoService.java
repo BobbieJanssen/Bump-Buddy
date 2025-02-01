@@ -7,10 +7,10 @@ import java.util.Optional;
 
 public interface PhotoService {
     List<Photo> getAllPhotos();
-    Optional<Photo> getPhotoById(long id);
-    List<Photo> findAllByAlbumId(long albumId);
-    Photo createPhoto(Photo photo);
-    Photo updatePhoto(long id, Photo photo);
-    Photo updatePhotoNote(long photoId, String note);
-    void deletePhoto(long id);
+    Optional<Photo> getPhotoById(Long id);
+    List<Photo> getPhotosByAlbumId(Long albumId);
+    Photo uploadPhoto(Photo photo);
+    Photo updatePhoto(Long id, Photo photo);
+    Photo updatePhotoNote(Long photoId, String note);
+    void deletePhoto(Long id);
 }

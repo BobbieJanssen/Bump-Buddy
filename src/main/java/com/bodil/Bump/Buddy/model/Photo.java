@@ -10,7 +10,7 @@ public class Photo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String filepath;
     private String note;
@@ -18,7 +18,7 @@ public class Photo {
 
     @ManyToOne
     @JoinColumn(name = "album_id")
-    private Photoalbum photoalbum;
+    private PhotoAlbum photoalbum;
 
     public Photo() {}
 
@@ -48,11 +48,11 @@ public class Photo {
         this.uploadedAt = uploadedAt;
     }
 
-    public Photoalbum getPhotoalbum() {
+    public PhotoAlbum getPhotoalbum() {
         return photoalbum;
     }
 
-    public void setPhotoalbum(Photoalbum photoalbum) {
+    public void setPhotoalbum(PhotoAlbum photoalbum) {
         this.photoalbum = photoalbum;
     }
 }

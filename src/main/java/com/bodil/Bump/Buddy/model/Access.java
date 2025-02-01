@@ -22,7 +22,7 @@ public class Access {
 
     @ManyToOne
     @JoinColumn(name = "album_id")
-    private Photoalbum photoalbum;
+    private PhotoAlbum photoalbum;
 
     public Access() {}
 
@@ -53,11 +53,11 @@ public class Access {
         this.guest = guest;
     }
 
-    public Photoalbum getPhotoalbum() {
+    public PhotoAlbum getPhotoalbum() {
         return photoalbum;
     }
 
-    public void setPhotoalbum(Photoalbum photoalbum) {
+    public void setPhotoalbum(PhotoAlbum photoalbum) {
         this.photoalbum = photoalbum;
     }
 }

@@ -6,12 +6,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "photoalbums")
-public class Photoalbum {
+@Table(name = "photo_albums")
+public class PhotoAlbum {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String title;
     private String note;
@@ -21,10 +21,10 @@ public class Photoalbum {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "photoalbum", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "photo_album", cascade = CascadeType.ALL)
     private List<Photo> photos; // Samenstelling: 0..* fotos
 
-    public Photoalbum() {}
+    public PhotoAlbum() {}
     // Getters en setters
 
 
