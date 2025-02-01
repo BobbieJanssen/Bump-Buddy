@@ -44,4 +44,7 @@ public class Task {
     public void setChecklist(Checklist checklist) {
         this.checklist = checklist;
     }
+
+    public void setIsCompleted(boolean b) {
+    }
 }
