@@ -1,9 +1,7 @@
 package com.bodil.Bump.Buddy.service.interfaces;
 
 import com.bodil.Bump.Buddy.model.Article;
-
 import java.util.List;
-import java.util.Optional;
 
 public interface ArticleService {
     List<Article> getAllArticles();

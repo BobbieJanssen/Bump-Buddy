@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Service
 public class AccessServiceImp implements AccessService {
-
     private final AccessRepository accessRepository;
 
     public AccessServiceImp (AccessRepository accessRepository) {
@@ -28,7 +27,7 @@ public class AccessServiceImp implements AccessService {
     }
 
     @Override
-    public List<Access> getAllAccesses() {
+    public List<Access> getAllAccess() {
         return accessRepository.findAll();
     }
 

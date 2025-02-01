@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface AccessService {
     Access createAccess(Access access);
     Optional<Access> getAccessById(long id);
-    List<Access> getAllAccesses();
+    List<Access> getAllAccess();
     Access updateAccess(long id, Access access);
     void deleteAccess(long id);
 }
