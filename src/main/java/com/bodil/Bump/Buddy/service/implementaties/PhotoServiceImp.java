@@ -23,22 +23,22 @@ public class PhotoServiceImp implements PhotoService {
     }
 
     @Override
-    public Optional<Photo> getPhotoById(long id) {
+    public Optional<Photo> getPhotoById(Long id) {
         return photoRepository.findById(id);
     }
 
     @Override
-    public List<Photo> findAllByAlbumId(long albumId) {
+    public List<Photo> getPhotosByAlbumId(Long albumId) {
         return photoRepository.findAllByAlbumId(albumId);
     }
 
     @Override
-    public Photo createPhoto(Photo photo) {
+    public Photo uploadPhoto(Photo photo) {
         return photoRepository.save(photo);
     }
 
     @Override
-    public Photo updatePhoto(long id, Photo photo) {
+    public Photo updatePhoto(Long id, Photo photo) {
         if (photoRepository.existsById(id)) {
             return photoRepository.save(photo);
         } else {
@@ -55,7 +55,7 @@ public class PhotoServiceImp implements PhotoService {
     }
 
     @Override
-    public void deletePhoto(long id) {
+    public void deletePhoto(Long id) {
         photoRepository.deleteById(id);
     }
 }

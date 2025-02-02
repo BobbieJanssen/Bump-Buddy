@@ -26,7 +26,7 @@ public class User {
     private Pregnancy pregnancy; // 0..1 relatie
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Photoalbum> photoalbums; // 0..* relatie
+    private List<PhotoAlbum> photoalbums; // 0..* relatie
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Checklist> checklists; // 0..* relatie
@@ -84,11 +84,11 @@ public class User {
         this.pregnancy = pregnancy;
     }
 
-    public List<Photoalbum> getPhotoalbums() {
+    public List<PhotoAlbum> getPhotoalbums() {
         return photoalbums;
     }
 
-    public void setPhotoalbums(List<Photoalbum> photoalbums) {
+    public void setPhotoalbums(List<PhotoAlbum> photoalbums) {
         this.photoalbums = photoalbums;
     }
 
