@@ -22,12 +22,12 @@ public class ChecklistServiceImp implements ChecklistService {
     }
 
     @Override
-    public Optional<Checklist> getChecklistById(long id) {
+    public Optional<Checklist> getChecklistById(Long id) {
         return checklistRepository.findById(id);
     }
 
     @Override
-    public List<Checklist> findAllByUserId(long userId) {
+    public List<Checklist> getChecklistByUserId(Long userId) {
         return checklistRepository.findAllByUserId(userId);
     }
 
@@ -37,7 +37,7 @@ public class ChecklistServiceImp implements ChecklistService {
     }
 
     @Override
-    public Checklist updateChecklist(long id, Checklist checklist) {
+    public Checklist updateChecklist(Long id, Checklist checklist) {
         if (checklistRepository.existsById(id)) {
             return checklistRepository.save(checklist);
         } else {
@@ -46,7 +46,7 @@ public class ChecklistServiceImp implements ChecklistService {
     }
 
     @Override
-    public void deleteChecklist(long id) {
+    public void deleteChecklist(Long id) {
         checklistRepository.deleteById(id);
     }
 }

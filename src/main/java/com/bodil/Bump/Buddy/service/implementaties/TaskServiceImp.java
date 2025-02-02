@@ -22,12 +22,12 @@ public class TaskServiceImp implements TaskService {
     }
 
     @Override
-    public Optional<Task> getTaskById(long id) {
+    public Optional<Task> getTaskById(Long id) {
         return taskRepository.findById(id);
     }
 
     @Override
-    public List<Task> findAllByChecklistId(long checklistId) {
+    public List<Task> findAllByChecklistId(Long checklistId) {
         return taskRepository.findAllByChecklistId(checklistId);
     }
 
@@ -37,7 +37,7 @@ public class TaskServiceImp implements TaskService {
     }
 
     @Override
-    public Task updateTask(long id, Task task) {
+    public Task updateTask(Long id, Task task) {
         if (taskRepository.existsById(id)) {
             return taskRepository.save(task);
         } else {
@@ -46,13 +46,13 @@ public class TaskServiceImp implements TaskService {
     }
 
     @Override
-    public void deleteTask(long id) {
+    public void deleteTask(Long id) {
         taskRepository.deleteById(id);
     }
 
     @Override
-    public void markTaskAsCompleted(long taskId) {
-        Task task = taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("Task not found"));
+    public void markTaskAsCompleted(Long id) {
+        Task task = taskRepository.findById(id).orElseThrow(() -> new RuntimeException("Task not found"));
         task.setIsCompleted(true);
         taskRepository.save(task);
     }

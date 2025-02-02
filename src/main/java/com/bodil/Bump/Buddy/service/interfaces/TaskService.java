@@ -7,10 +7,10 @@ import java.util.Optional;
 
 public interface TaskService {
     List<Task> getAllTasks();
-    Optional<Task> getTaskById(long id);
-    List<Task> findAllByChecklistId(long checklistId);
+    Optional<Task> getTaskById(Long id);
+    List<Task> findAllByChecklistId(Long checklistId);
     Task createTask(Task task);
-    Task updateTask(long id, Task task);
-    void deleteTask(long id);
-    void markTaskAsCompleted(long taskId);
+    Task updateTask(Long id, Task task);
+    void deleteTask(Long id);
+    void markTaskAsCompleted(Long id);
 }
