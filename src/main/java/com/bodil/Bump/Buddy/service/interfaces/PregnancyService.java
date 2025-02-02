@@ -6,8 +6,8 @@ import java.util.Optional;
 
 public interface PregnancyService {
     List<Pregnancy> getAllPregnancies();
-    Optional<Pregnancy> getPregnancyById(long id);
+    Optional<Pregnancy> getPregnancyById(Long id);
     Pregnancy createPregnancy(Pregnancy pregnancy);
-    Pregnancy updatePregnancy(long id, Pregnancy pregnancy);
-    void deletePregnancy(long id);
+    Pregnancy updatePregnancy(Long id, Pregnancy pregnancy);
+    void deletePregnancy(Long id);
 }

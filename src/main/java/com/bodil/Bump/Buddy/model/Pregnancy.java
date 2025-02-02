@@ -10,7 +10,7 @@ public class Pregnancy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private java.time.LocalDate dueDate;
 
