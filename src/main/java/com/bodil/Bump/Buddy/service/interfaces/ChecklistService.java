@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface ChecklistService {
     List<Checklist> getAllChecklists();
-    Optional<Checklist> getChecklistById(long id);
-    List<Checklist> findAllByUserId(long userId);
+    Optional<Checklist> getChecklistById(Long id);
+    List<Checklist> getChecklistByUserId(Long userId);
     Checklist createChecklist(Checklist checklist);
-    Checklist updateChecklist(long id, Checklist checklist);
-    void deleteChecklist(long id);
+    Checklist updateChecklist(Long id, Checklist checklist);
+    void deleteChecklist(Long id);
 }
