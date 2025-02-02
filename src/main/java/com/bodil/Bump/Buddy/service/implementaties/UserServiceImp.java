@@ -18,11 +18,12 @@ public class UserServiceImp implements UserService {
 
     @Override
     public List<User> getAllUsers(){
+
         return userRepository.findAll();
     }
 
     @Override
-    public Optional<User> getUserById(long id) {
+    public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
 
@@ -31,9 +32,8 @@ public class UserServiceImp implements UserService {
         return userRepository.save(user);
     }
 
-    //check of dit klopt
     @Override
-    public User updateUser(long id, User user) {
+    public User updateUser(Long id, User user) {
         if (userRepository.existsById(id)) {
             return userRepository.save(user);
         } else {
@@ -42,8 +42,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void deleteUser(long id) {
-
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
