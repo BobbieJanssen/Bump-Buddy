@@ -21,8 +21,7 @@ public class UserController {
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
-
-    //met optional of zonder?
+    
     @GetMapping("/{id}")
     public ResponseEntity<Optional<User>> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));

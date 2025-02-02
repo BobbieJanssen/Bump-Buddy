@@ -17,12 +17,7 @@ public class AccessServiceImp implements AccessService {
     }
 
     @Override
-    public Access createAccess(Access access) {
-        return accessRepository.save(access);
-    }
-
-    @Override
-    public Optional<Access> getAccessById(long id) {
+    public Optional<Access> getAccessById(Long id) {
         return accessRepository.findById(id);
     }
 
@@ -32,7 +27,12 @@ public class AccessServiceImp implements AccessService {
     }
 
     @Override
-    public Access updateAccess(long id, Access access) {
+    public Access createAccess(Access access) {
+        return accessRepository.save(access);
+    }
+
+    @Override
+    public Access updateAccess(Long id, Access access) {
         if(accessRepository.existsById(id)) {
             return accessRepository.save(access);
         }
@@ -40,7 +40,7 @@ public class AccessServiceImp implements AccessService {
     }
 
     @Override
-    public void deleteAccess(long id) {
+    public void deleteAccess(Long id) {
         accessRepository.deleteById(id);
     }
 }

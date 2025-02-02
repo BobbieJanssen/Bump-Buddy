@@ -24,7 +24,6 @@ public class UserServiceImp implements UserService {
 
     @Override
     public Optional<User> getUserById(Long id) {
-
         return userRepository.findById(id);
     }
 
@@ -33,7 +32,6 @@ public class UserServiceImp implements UserService {
         return userRepository.save(user);
     }
 
-    //check of dit klopt
     @Override
     public User updateUser(Long id, User user) {
         if (userRepository.existsById(id)) {
