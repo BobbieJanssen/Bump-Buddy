@@ -1,4 +1,4 @@
-package com.bodil.Bump.Buddy.controller;
+package com.bodil.Bump.Buddy.controller.controller;
 
 import com.bodil.Bump.Buddy.model.Photo;
 import com.bodil.Bump.Buddy.service.interfaces.PhotoService;

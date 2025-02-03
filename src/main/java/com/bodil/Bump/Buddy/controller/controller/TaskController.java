@@ -1,4 +1,4 @@
-package com.bodil.Bump.Buddy.controller;
+package com.bodil.Bump.Buddy.controller.controller;
 
 import com.bodil.Bump.Buddy.model.Task;
 import com.bodil.Bump.Buddy.service.interfaces.TaskService;
@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/tasks")
