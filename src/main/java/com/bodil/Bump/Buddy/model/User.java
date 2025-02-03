@@ -35,6 +35,9 @@ public class User {
 
     // Getters en setters
 
+    public Long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

@@ -1,6 +1,6 @@
 package com.bodil.Bump.Buddy.controller.controller;
 
-import com.bodil.Bump.Buddy.model.Access;
+import com.bodil.Bump.Buddy.controller.DTO.AccessDTO;
 import com.bodil.Bump.Buddy.service.interfaces.AccessService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,23 +17,25 @@ public class AccessController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Access> getAccessById(@PathVariable Long id) {
-        return ResponseEntity.ok(accessService.getAccessById(id).orElse(null));
+    public ResponseEntity<AccessDTO> getAccessById(@PathVariable Long id) {
+        return accessService.getAccessById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping
-    public List<Access> getAllAccess() {
+    public List<AccessDTO> getAllAccess() {
         return accessService.getAllAccess();
     }
 
     @PostMapping
-    public ResponseEntity<Access> createAccess(@RequestBody Access access) {
-        return ResponseEntity.ok(accessService.createAccess(access));
+    public ResponseEntity<AccessDTO> createAccess(@RequestBody AccessDTO accessDTO) {
+        return ResponseEntity.ok(accessService.createAccess(accessDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Access> updateAccess(@PathVariable Long id, @RequestBody Access access) {
-        return ResponseEntity.ok(accessService.updateAccess(id, access));
+    public ResponseEntity<AccessDTO> updateAccess(@PathVariable Long id, @RequestBody AccessDTO accessDTO) {
+        return ResponseEntity.ok(accessService.updateAccess(id, accessDTO));
     }
 
     @DeleteMapping("/{id}")
@@ -41,6 +43,4 @@ public class AccessController {
         accessService.deleteAccess(id);
         return ResponseEntity.noContent().build();
     }
-
-
 }
