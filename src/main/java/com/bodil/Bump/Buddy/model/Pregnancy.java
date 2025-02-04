@@ -23,6 +23,9 @@ public class Pregnancy {
 
     // Getters en setters
 
+    public Long getId() {
+        return id;
+    }
 
     public LocalDate getDueDate() {
         return dueDate;

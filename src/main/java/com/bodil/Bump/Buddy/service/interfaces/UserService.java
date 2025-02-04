@@ -1,14 +1,15 @@
 package com.bodil.Bump.Buddy.service.interfaces;
 
+import com.bodil.Bump.Buddy.controller.DTO.UserDTO;
 import com.bodil.Bump.Buddy.model.User;
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    List<User> getAllUsers();
-    Optional<User> getUserById(Long id);
-    User createUser(User user);
-    User updateUser(Long id, User user);
+    List<UserDTO> getAllUsers();
+    Optional<UserDTO> getUserById(Long id);
+    UserDTO createUser(UserDTO userDTO);
+    UserDTO updateUser(Long id, UserDTO userDTO);
     void deleteUser(Long id);
-    Optional<User> findByEmail(String email);
+    Optional<UserDTO> findByEmail(String email);
 }

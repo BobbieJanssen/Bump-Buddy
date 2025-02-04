@@ -27,6 +27,9 @@ public class Checklist {
     public Checklist() {}
     // Getters en setters
 
+    public Long getId() {
+        return id;
+    }
 
     public String getTitle() {
         return title;
