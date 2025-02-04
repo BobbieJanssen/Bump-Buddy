@@ -1,5 +1,6 @@
 package com.bodil.Bump.Buddy.controller.controller;
 
+import com.bodil.Bump.Buddy.controller.DTO.ArticleDTO;
 import com.bodil.Bump.Buddy.model.Article;
 import com.bodil.Bump.Buddy.service.interfaces.ArticleService;
 import org.springframework.http.ResponseEntity;
@@ -17,28 +18,28 @@ public class ArticleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Article>> getAllArticles() {
+    public ResponseEntity<List<ArticleDTO>> getAllArticles() {
         return ResponseEntity.ok(articleService.getAllArticles());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
+    public ResponseEntity<ArticleDTO> getArticleById(@PathVariable Long id) {
         return ResponseEntity.ok(articleService.getArticleById(id));
     }
 
     @GetMapping("/week/{week}")
-    public ResponseEntity<List<Article>> getArticlesByWeek(@PathVariable int week) {
+    public ResponseEntity<List<ArticleDTO>> getArticlesByWeek(@PathVariable int week) {
         return ResponseEntity.ok(articleService.getArticlesByWeek(week));
     }
 
     @PostMapping
-    public ResponseEntity<Article> createArticle(@RequestBody Article article) {
-        return ResponseEntity.ok(articleService.createArticle(article));
+    public ResponseEntity<ArticleDTO> createArticle(@RequestBody ArticleDTO articleDTO) {
+        return ResponseEntity.ok(articleService.createArticle(articleDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Article> updateArticle(@PathVariable Long id, @RequestBody Article article) {
-        return ResponseEntity.ok(articleService.updateArticle(id, article));
+    public ResponseEntity<ArticleDTO> updateArticle(@PathVariable Long id, @RequestBody ArticleDTO articleDTO) {
+        return ResponseEntity.ok(articleService.updateArticle(id, articleDTO));
     }
 
     @DeleteMapping("/{id}")
