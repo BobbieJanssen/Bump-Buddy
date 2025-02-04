@@ -28,6 +28,9 @@ public class Access {
 
     // Getters en setters
 
+    public Long getId() {
+        return id;
+    }
 
     public boolean isStatus() {
         return status;

@@ -13,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
     private String email;
@@ -35,6 +35,9 @@ public class User {
 
     // Getters en setters
 
+    public Long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

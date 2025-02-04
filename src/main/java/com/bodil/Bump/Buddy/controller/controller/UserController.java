@@ -1,12 +1,11 @@
 package com.bodil.Bump.Buddy.controller.controller;
 
-import com.bodil.Bump.Buddy.model.User;
+import com.bodil.Bump.Buddy.controller.DTO.UserDTO;
 import com.bodil.Bump.Buddy.service.interfaces.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -18,23 +17,25 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
         return userService.getAllUsers();
     }
-    
+
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<User>> getUserById(@PathVariable Long id) {
-        return ResponseEntity.ok(userService.getUserById(id));
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+        return userService.getUserById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.ok(userService.createUser(user));
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.createUser(userDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
-        return ResponseEntity.ok(userService.updateUser(id, user));
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.updateUser(id, userDTO));
     }
 
     @DeleteMapping("/{id}")
@@ -44,9 +45,9 @@ public class UserController {
     }
 
     @GetMapping("/findByEmail")
-    public ResponseEntity<User> getUserByEmail(@RequestParam String email) {
-        Optional<User> user = userService.findByEmail(email);
-        return user.map(ResponseEntity::ok)
+    public ResponseEntity<UserDTO> getUserByEmail(@RequestParam String email) {
+        return userService.findByEmail(email)
+                .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
