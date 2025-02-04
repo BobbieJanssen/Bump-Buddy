@@ -43,4 +43,6 @@ public class UserDTO {
     public boolean isPrivate() {
         return isPrivate;
     }
+
+
 }
