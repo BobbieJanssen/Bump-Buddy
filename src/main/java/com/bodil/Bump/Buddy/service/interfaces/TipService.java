@@ -1,15 +1,14 @@
 package com.bodil.Bump.Buddy.service.interfaces;
 
-import com.bodil.Bump.Buddy.model.Tip;
-
+import com.bodil.Bump.Buddy.controller.DTO.TipDTO;
 import java.util.List;
-import java.util.Optional;
+
 
 public interface TipService {
-    List<Tip> getAllTips();
-    Tip getTipById(Long id);
-    List<Tip> getTipsByWeek(int week);
-    Tip createTip(Tip tip);
-    Tip updateTip(Long id, Tip tip);
+    List<TipDTO> getAllTips();
+    TipDTO getTipById(Long id);
+    List<TipDTO> getTipsByWeek(int week);
+    TipDTO createTip(TipDTO tipDTO);
+    TipDTO updateTip(Long id, TipDTO tipDTO);
     void deleteTip (Long id);
 }
