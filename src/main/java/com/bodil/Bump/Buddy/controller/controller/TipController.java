@@ -1,5 +1,6 @@
 package com.bodil.Bump.Buddy.controller.controller;
 
+import com.bodil.Bump.Buddy.controller.DTO.TipDTO;
 import com.bodil.Bump.Buddy.model.Tip;
 import com.bodil.Bump.Buddy.service.interfaces.TipService;
 import org.springframework.http.ResponseEntity;
@@ -17,28 +18,28 @@ public class TipController {
     }
 
     @GetMapping
-    public List<Tip> getAllTips() {
+    public List<TipDTO> getAllTips() {
         return tipService.getAllTips();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tip> getTipById(@PathVariable Long id) {
+    public ResponseEntity<TipDTO> getTipById(@PathVariable Long id) {
         return ResponseEntity.ok(tipService.getTipById(id));
     }
 
     @GetMapping("/week/{week}")
-    public List<Tip> getTipsByWeek(@PathVariable int week) {
+    public List<TipDTO> getTipsByWeek(@PathVariable int week) {
         return tipService.getTipsByWeek(week);
     }
 
     @PostMapping
-    public ResponseEntity<Tip> createTip(@RequestBody Tip tip) {
-        return ResponseEntity.ok(tipService.createTip(tip));
+    public ResponseEntity<TipDTO> createTip(@RequestBody TipDTO tipDTO) {
+        return ResponseEntity.ok(tipService.createTip(tipDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tip> updateTip(@PathVariable Long id, @RequestBody Tip tip) {
-        return ResponseEntity.ok(tipService.updateTip(id, tip));
+    public ResponseEntity<TipDTO> updateTip(@PathVariable Long id, @RequestBody TipDTO tipDTO) {
+        return ResponseEntity.ok(tipService.updateTip(id, tipDTO));
     }
 
     @DeleteMapping("/{id}")

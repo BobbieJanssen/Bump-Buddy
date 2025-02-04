@@ -1,5 +1,7 @@
 package com.bodil.Bump.Buddy.service.implementaties;
 
+import com.bodil.Bump.Buddy.controller.DTO.TipDTO;
+import com.bodil.Bump.Buddy.controller.mapper.TipMapper;
 import com.bodil.Bump.Buddy.model.Tip;
 import com.bodil.Bump.Buddy.repository.interfaces.TipRepository;
 import com.bodil.Bump.Buddy.service.interfaces.TipService;
@@ -8,45 +10,57 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TipServiceImp implements TipService {
     private final TipRepository tipRepository;
+    private final TipMapper tipMapper;
 
-    @Autowired
-    public TipServiceImp (TipRepository tipRepository) {
+
+    public TipServiceImp (TipRepository tipRepository, TipMapper tipMapper) {
         this.tipRepository = tipRepository;
+        this.tipMapper = tipMapper;
     }
 
     @Override
-    public List<Tip> getAllTips() {
-        return tipRepository.findAll();
+    public List<TipDTO> getAllTips() {
+        return tipRepository.findAll().stream()
+                .map(tipMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Tip getTipById(Long id) {
+    public TipDTO getTipById(Long id) {
         return tipRepository.findById(id)
+                .map(tipMapper::toDTO)
                 .orElseThrow(() -> new EntityNotFoundException("Tip not found"));
     }
 
     @Override
-    public List<Tip> getTipsByWeek (int week) {
-        return tipRepository.findByVisibleAtWeek(week);
+    public List<TipDTO> getTipsByWeek (int week) {
+        return tipRepository.findByVisibleAtWeek(week).stream()
+                .map(tipMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Tip createTip(Tip tip) {
-        return tipRepository.save(tip);
+    public TipDTO createTip(TipDTO tipDTO) {
+        Tip tip = tipMapper.toEntity(tipDTO);
+        Tip savedTip = tipRepository.save(tip);
+        return tipMapper.toDTO(savedTip);
     }
 
     @Override
-    public Tip updateTip (Long id, Tip updatedTip) {
-        Tip existingTip = getTipById(id);
-        existingTip.setTitle(updatedTip.getTitle());
-        existingTip.setContent(updatedTip.getContent());
-        existingTip.setVisibleAtWeek(updatedTip.getVisibleAtWeek());
-        existingTip.setUploadedAt(updatedTip.getUploadedAt());
-        return tipRepository.save(existingTip);
+    public TipDTO updateTip (Long id, TipDTO updatedTipDTO) {
+        Tip existingTip = tipRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Tip not found"));
+        existingTip.setTitle(updatedTipDTO.getTitle());
+        existingTip.setContent(updatedTipDTO.getContent());
+        existingTip.setVisibleAtWeek(updatedTipDTO.getVisibleAtWeek());
+        existingTip.setUploadedAt(updatedTipDTO.getUploadedAt());
+        Tip updatedTip = tipRepository.save(existingTip);
+        return tipMapper.toDTO(updatedTip);
     }
 
     @Override

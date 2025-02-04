@@ -1,13 +1,13 @@
 package com.bodil.Bump.Buddy.service.interfaces;
 
-import com.bodil.Bump.Buddy.model.Article;
+import com.bodil.Bump.Buddy.controller.DTO.ArticleDTO;
 import java.util.List;
 
 public interface ArticleService {
-    List<Article> getAllArticles();
-    Article getArticleById(Long id);
-    List<Article> getArticlesByWeek(int week);
-    Article createArticle(Article article);
-    Article updateArticle(Long id, Article article);
+    List<ArticleDTO> getAllArticles();
+    ArticleDTO getArticleById(Long id);
+    List<ArticleDTO> getArticlesByWeek(int week);
+    ArticleDTO createArticle(ArticleDTO articleDTO);
+    ArticleDTO updateArticle(Long id, ArticleDTO articleDTO);
     void deleteArticle(Long id);
 }
