@@ -1,5 +1,6 @@
 package com.bodil.Bump.Buddy.controller.controller;
 
+import com.bodil.Bump.Buddy.controller.DTO.PhotoDTO;
 import com.bodil.Bump.Buddy.model.Photo;
 import com.bodil.Bump.Buddy.service.interfaces.PhotoService;
 import org.springframework.http.ResponseEntity;
@@ -19,32 +20,32 @@ public class PhotoController {
     }
 
     @GetMapping
-    public List<Photo> getAllPhotos() {
+    public List<PhotoDTO> getAllPhotos() {
         return photoService.getAllPhotos();
     }
 
-    @GetMapping
-    public Optional<Photo> getPhotoById(@PathVariable Long id) {
-        return photoService.getPhotoById(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<PhotoDTO> getPhotoById(@PathVariable Long id) {
+        return ResponseEntity.of(photoService.getPhotoById(id));
     }
 
     @GetMapping("/album/{albumId}")
-    public List<Photo> getPhotosByAlbumId(@PathVariable Long albumId) {
+    public List<PhotoDTO> getPhotosByAlbumId(@PathVariable Long albumId) {
         return photoService.getPhotosByAlbumId(albumId);
     }
 
     @PostMapping
-    public ResponseEntity<Photo> uploadPhoto(@RequestBody Photo photo) {
-        return ResponseEntity.ok(photoService.uploadPhoto(photo));
+    public ResponseEntity<PhotoDTO> uploadPhoto(@RequestBody PhotoDTO photoDTO) {
+        return ResponseEntity.ok(photoService.uploadPhoto(photoDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Photo> updatePhoto(@PathVariable Long id, @RequestBody Photo photo ){
-        return ResponseEntity.ok(photoService.updatePhoto(id, photo));
+    public ResponseEntity<PhotoDTO> updatePhoto(@PathVariable Long id, @RequestBody PhotoDTO photoDTO ){
+        return ResponseEntity.ok(photoService.updatePhoto(id, photoDTO));
     }
 
     @PutMapping("/{id}/note")
-    public ResponseEntity<Photo> updatePhotoNote(@PathVariable Long id, @RequestBody String note) {
+    public ResponseEntity<PhotoDTO> updatePhotoNote(@PathVariable Long id, @RequestBody String note) {
         return ResponseEntity.ok(photoService.updatePhotoNote(id, note));
     }
 
