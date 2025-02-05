@@ -24,6 +24,11 @@ public class Photo {
 
     // Getters en setters
 
+
+    public Long getId() {
+        return id;
+    }
+
     public String getFilepath() {
         return filepath;
     }
@@ -48,11 +53,11 @@ public class Photo {
         this.uploadedAt = uploadedAt;
     }
 
-    public PhotoAlbum getPhotoalbum() {
+    public PhotoAlbum getPhotoAlbum() {
         return photoalbum;
     }
 
-    public void setPhotoalbum(PhotoAlbum photoalbum) {
+    public void setPhotoAlbum(PhotoAlbum photoalbum) {
         this.photoalbum = photoalbum;
     }
 }
