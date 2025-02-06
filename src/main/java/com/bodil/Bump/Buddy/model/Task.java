@@ -21,6 +21,10 @@ public class Task {
     // Getters en setters
 
 
+    public Long getId() {
+        return id;
+    }
+
     public String getDescription() {
         return description;
     }
