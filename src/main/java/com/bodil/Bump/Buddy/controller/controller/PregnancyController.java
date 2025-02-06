@@ -1,5 +1,6 @@
 package com.bodil.Bump.Buddy.controller.controller;
 
+import com.bodil.Bump.Buddy.controller.DTO.PregnancyDTO;
 import com.bodil.Bump.Buddy.model.Pregnancy;
 import com.bodil.Bump.Buddy.service.interfaces.PregnancyService;
 import org.springframework.http.ResponseEntity;
@@ -17,23 +18,25 @@ public class PregnancyController {
     }
 
     @GetMapping
-    public List<Pregnancy> getAllPregnancies() {
+    public List<PregnancyDTO> getAllPregnancies() {
         return pregnancyService.getAllPregnancies();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pregnancy> getPregnancyById(@PathVariable Long id) {
-        return ResponseEntity.ok(pregnancyService.getPregnancyById(id).orElse(null));
+    public ResponseEntity<PregnancyDTO> getPregnancyById(@PathVariable Long id) {
+        return pregnancyService.getPregnancyById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Pregnancy> createPregnancy(@RequestBody Pregnancy pregnancy) {
-        return ResponseEntity.ok(pregnancyService.createPregnancy(pregnancy));
+    public ResponseEntity<PregnancyDTO> createPregnancy(@RequestBody PregnancyDTO pregnancyDTO) {
+        return ResponseEntity.ok(pregnancyService.createPregnancy(pregnancyDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pregnancy> updatePregnancy(@PathVariable Long id, @RequestBody Pregnancy pregnancy) {
-        return ResponseEntity.ok(pregnancyService.updatePregnancy(id, pregnancy));
+    public ResponseEntity<PregnancyDTO> updatePregnancy(@PathVariable Long id, @RequestBody PregnancyDTO pregnancyDTO) {
+        return ResponseEntity.ok(pregnancyService.updatePregnancy(id, pregnancyDTO));
     }
 
     @DeleteMapping("/{id}")
